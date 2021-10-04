@@ -7,8 +7,8 @@ void main() async {
     var atClientManager = await AtClientManager.getInstance()
         .setCurrentAtSign(atSign, 'wavi', TestUtil.getAlicePreference());
 
-    var result = await atClientManager.atClient.getKeys();
-    result.forEach((key) {
+    var result = await atClientManager.atClient?.getKeys();
+    result?.forEach((key) {
       print(key.toString());
     });
   } on Exception catch (e, trace) {

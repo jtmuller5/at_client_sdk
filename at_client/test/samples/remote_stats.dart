@@ -10,7 +10,7 @@ void main() async {
         .setCurrentAtSign(atsign, 'wavi', preference);
     var atClient = atClientManager.atClient;
     var stats_result = await atClient
-        .getRemoteSecondary()!
+        ?.getRemoteSecondary()!
         .executeCommand('stats\n', auth: true);
     print(stats_result);
   } on Exception catch (e, trace) {

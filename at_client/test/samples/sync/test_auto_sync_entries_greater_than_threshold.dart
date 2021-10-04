@@ -15,7 +15,7 @@ void main() async {
   for (var i = 0; i < 5; i++) {
     var phoneKey = AtKey()..key = 'phone_$i';
     var value = '$i';
-    var result = await atClient.put(phoneKey, value);
+    var result = await atClient?.put(phoneKey, value);
     print(result);
   }
 }

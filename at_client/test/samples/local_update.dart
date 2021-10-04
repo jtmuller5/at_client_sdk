@@ -15,7 +15,7 @@ void main() async {
   var phoneKey = AtKey()..key = 'phone';
   var value = '+1 100 200 300';
 
-  var result = await atClient.put(phoneKey, value);
+  var result = await atClient?.put(phoneKey, value);
   print(result);
 
   // public:phone.me@alice🛠
@@ -25,6 +25,6 @@ void main() async {
     ..metadata = metadata;
   var publicPhoneValue = '+1 100 200 302';
   var updatePublicPhoneResult =
-      await atClient.put(publicPhoneKey, publicPhoneValue);
+      await atClient?.put(publicPhoneKey, publicPhoneValue);
   print(updatePublicPhoneResult);
 }

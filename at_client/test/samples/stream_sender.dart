@@ -12,7 +12,7 @@ void main() async {
         .setCurrentAtSign(atsign, 'wavi', preference);
     var atClient = atClientManager.atClient;
     var streamResult =
-        await atClient.stream('@bob🛠', 'cat.jpeg', namespace: 'atmosphere');
+        await atClient?.stream('@bob🛠', 'cat.jpeg', namespace: 'atmosphere');
     print(streamResult);
   } on Exception catch (e, trace) {
     print(e.toString());

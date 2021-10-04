@@ -22,10 +22,10 @@ void main() {
       ..key = 'phone'
       ..sharedWith = '@bob🛠';
     var value = '+1 100 200 300';
-    var putResult = await atClient.put(phoneKey, value);
+    var putResult = await atClient?.put(phoneKey, value);
     expect(putResult, true);
-    var getResult = await atClient.get(phoneKey);
-    expect(getResult.value, value);
+    var getResult = await atClient?.get(phoneKey);
+    expect(getResult?.value, value);
   });
   tearDown(() async => await tearDownFunc());
 }

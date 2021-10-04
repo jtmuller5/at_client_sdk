@@ -10,7 +10,7 @@ void main() async {
     var atClientManager = await AtClientManager.getInstance()
         .setCurrentAtSign(atsign, 'wavi', preference);
     var atClient = atClientManager.atClient;
-    await atClient.downloadFile(
+    await atClient?.downloadFile(
         'file_transfer_33e44ad9-cf6f-4433-9345-078a7732c9ed', '@alice🛠',
         downloadPath: 'test/samples/output');
   } on Exception catch (e, trace) {

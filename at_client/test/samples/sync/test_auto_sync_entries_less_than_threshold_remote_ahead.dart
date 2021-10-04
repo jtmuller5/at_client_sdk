@@ -15,7 +15,7 @@ void main() async {
   for (var i = 0; i < 2; i++) {
     var phoneKey = AtKey()..key = 'ph_$i';
     var value = '$i';
-    var result = await atClient.put(phoneKey, value);
+    var result = await atClient?.put(phoneKey, value);
     print(result);
   }
   // execute remote update command from ssl terminal

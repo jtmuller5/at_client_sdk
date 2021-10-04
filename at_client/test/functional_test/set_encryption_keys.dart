@@ -14,7 +14,7 @@ Future<void> setEncryptionKeys(
     var result;
 
     //Set encryption private key
-    result = await atClient.getLocalSecondary()!.putValue(
+    result = await atClient?.getLocalSecondary()!.putValue(
         AT_ENCRYPTION_PRIVATE_KEY,
         demo_credentials.encryptionPrivateKeyMap[atsign]!);
 
@@ -23,7 +23,7 @@ Future<void> setEncryptionKeys(
     var atKey = AtKey()
       ..key = 'publickey'
       ..metadata = metadata;
-    result = await atClient.put(
+    result = await atClient?.put(
         atKey, demo_credentials.encryptionPublicKeyMap[atsign]);
     print(result);
   } on Exception catch (e, trace) {

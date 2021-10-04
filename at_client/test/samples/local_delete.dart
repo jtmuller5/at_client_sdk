@@ -11,6 +11,6 @@ void main() async {
   var atKey = AtKey()
     ..key = 'phone'
     ..sharedWith = '@alice🛠';
-  var result = await atClient.delete(atKey);
+  var result = await atClient?.delete(atKey);
   print(result);
 }

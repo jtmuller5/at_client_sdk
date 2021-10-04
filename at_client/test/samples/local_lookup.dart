@@ -11,8 +11,8 @@ void main() async {
     var atClient = atClientManager.atClient;
     //llookup:phone.me@alice🛠
     var atKey = AtKey()..key = 'phone';
-    var alicePhone = await atClient.get(atKey);
-    print(alicePhone.value);
+    var alicePhone = await atClient?.get(atKey);
+    print(alicePhone?.value);
     //llookup:alice🛠:phone.me@alice🛠
 //    var privatePhoneKey = AtKey()
 //      ..key = 'phone'
@@ -24,8 +24,8 @@ void main() async {
     var publicPhoneKey = AtKey()
       ..key = 'phone'
       ..metadata = metadata;
-    var alicePublicPhone = await atClient.get(publicPhoneKey);
-    print(alicePublicPhone.value);
+    var alicePublicPhone = await atClient?.get(publicPhoneKey);
+    print(alicePublicPhone?.value);
   } on Exception catch (e, trace) {
     print(e.toString());
     print(trace);

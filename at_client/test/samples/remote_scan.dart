@@ -11,7 +11,7 @@ void main() async {
     var atClient = atClientManager.atClient;
     // auth scan
     var auth_scan_result = await atClient
-        .getRemoteSecondary()!
+        ?.getRemoteSecondary()!
         .executeCommand('scan\n', auth: true);
     print(auth_scan_result);
   } on Exception catch (e, trace) {

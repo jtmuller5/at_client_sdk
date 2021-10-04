@@ -23,13 +23,13 @@ void main() {
       ..sharedWith = '@bob🛠';
     var value = 'USA';
     // put locationKey using dedicated connection
-    var putResult = await atClient.put(locationKey, value, isDedicated: true);
+    var putResult = await atClient?.put(locationKey, value, isDedicated: true);
     expect(putResult, true);
     // get locationKey value using dedicated connection
-    var getResult = await atClient.get(locationKey, isDedicated: true);
-    expect(getResult.value, value);
+    var getResult = await atClient?.get(locationKey, isDedicated: true);
+    expect(getResult?.value, value);
     // delete locationKey using dedicated connection
-    var deleteResult = await atClient.delete(locationKey, isDedicated: true);
+    var deleteResult = await atClient?.delete(locationKey, isDedicated: true);
     expect(deleteResult, true);
   });
   tearDown(() async => await tearDownFunc());

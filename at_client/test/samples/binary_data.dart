@@ -9,8 +9,7 @@ void main() async {
   try {
     //1.1 put image for self
     var atsign = '@alice';
-    var atClientManager = await AtClientManager.getInstance()
-        .setCurrentAtSign(atsign, 'wavi', TestUtil.getAlicePreference());
+    var atClientManager = await AtClientManager.getInstance().setCurrentAtSign(atsign, 'wavi', TestUtil.getAlicePreference());
     var atClient = atClientManager.atClient;
     var imageLocation = 'image.jpg'; //path to your image file
     var imageData = getdata(imageLocation);
@@ -18,12 +17,11 @@ void main() async {
     var atKey = AtKey()
       ..key = 'image_self'
       ..metadata = metadata;
-    var result = await atClient.put(atKey, imageData);
+    var result = await atClient?.put(atKey, imageData);
     print(result);
     //1.2 get image for self
-    var decodedImage = await atClient.get(atKey);
-    saveToFile('image_retrieved_self.jpg',
-        decodedImage.value); //path to save the retrieved image
+    var decodedImage = await atClient?.get(atKey);
+    if (decodedImage != null) saveToFile('image_retrieved_self.jpg', decodedImage.value); //path to save the retrieved image
 
     //2.1 put public image
     var publicMeta = Metadata()
@@ -32,11 +30,11 @@ void main() async {
     var publicAtKey = AtKey()
       ..key = 'image_public'
       ..metadata = publicMeta;
-    var publicResult = await atClient.put(publicAtKey, imageData);
+    var publicResult = await atClient?.put(publicAtKey, imageData);
     print(publicResult);
     //2.2 get public image
-    var decodedPublicImage = await atClient.get(publicAtKey);
-    saveToFile('image_retrieved_public.jpg', decodedPublicImage.value);
+    var decodedPublicImage = await atClient?.get(publicAtKey);
+    if(decodedPublicImage != null) saveToFile('image_retrieved_public.jpg', decodedPublicImage.value);
 
 //    //3.1 share image with another atSign
 //    result = await atClient.putBinary('image_shared', imageData,

@@ -12,6 +12,6 @@ void main() async {
   var value = '123';
   var metadata = Metadata()..isPublic = true;
   atKey.metadata = metadata;
-  var result = await atClient.put(atKey, value);
+  var result = await atClient?.put(atKey, value);
   print(result);
 }

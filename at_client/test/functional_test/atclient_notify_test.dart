@@ -16,21 +16,24 @@ void main() {
     final atClientManager = await AtClientManager.getInstance()
         .setCurrentAtSign(atsign, 'me', preference);
     var atClient = atClientManager.atClient;
-    atClientManager.syncService.sync();
-    // To setup encryption keys
-    await setEncryptionKeys(atsign, preference);
-    // phone.me@alice🛠
-    var phoneKey = AtKey()
-      ..key = 'phone'
-      ..sharedWith = '@bob🛠';
-    var value = '+1 100 200 300';
-    var notification = await NotificationServiceImpl.create(atClient);
-    var result = await notification
-        .notify(NotificationParams.forUpdate(phoneKey, value: value));
-    expect(result.notificationStatusEnum.toString(),
-        'NotificationStatusEnum.delivered');
-    expect(result.atKey.key, 'phone');
-    expect(result.atKey.sharedWith, phoneKey.sharedWith);
+
+    if(atClient != null) {
+      atClientManager.syncService.sync();
+      // To setup encryption keys
+      await setEncryptionKeys(atsign, preference);
+      // phone.me@alice🛠
+      var phoneKey = AtKey()
+        ..key = 'phone'
+        ..sharedWith = '@bob🛠';
+      var value = '+1 100 200 300';
+      var notification = await NotificationServiceImpl.create(atClient);
+      var result = await notification
+          .notify(NotificationParams.forUpdate(phoneKey, value: value));
+      expect(result.notificationStatusEnum.toString(),
+          'NotificationStatusEnum.delivered');
+      expect(result.atKey.key, 'phone');
+      expect(result.atKey.sharedWith, phoneKey.sharedWith);
+    }
   });
 
   test('notify updating of a key to sharedWith atSign - using callback',
@@ -94,16 +97,19 @@ void main() {
     final atClientManager = await AtClientManager.getInstance()
         .setCurrentAtSign(atsign, 'me', preference);
     var atClient = atClientManager.atClient;
-    atClientManager.syncService.sync();
-    // To setup encryption keys
-    await setEncryptionKeys(atsign, preference);
-    var notification = await NotificationServiceImpl.create(atClient);
-    var notificationResult = await notification
-        .notify(NotificationParams.forText('Hello', '@bob🛠'));
-    expect(notificationResult.notificationStatusEnum.toString(),
-        'NotificationStatusEnum.delivered');
-    expect(notificationResult.atKey.key, 'Hello');
-    expect(notificationResult.atKey.sharedWith, '@bob🛠');
+
+    if(atClient != null) {
+      atClientManager.syncService.sync();
+      // To setup encryption keys
+      await setEncryptionKeys(atsign, preference);
+      var notification = await NotificationServiceImpl.create(atClient);
+      var notificationResult = await notification
+          .notify(NotificationParams.forText('Hello', '@bob🛠'));
+      expect(notificationResult.notificationStatusEnum.toString(),
+          'NotificationStatusEnum.delivered');
+      expect(notificationResult.atKey.key, 'Hello');
+      expect(notificationResult.atKey.sharedWith, '@bob🛠');
+    }
   });
 
   test('notify text of to sharedWith atSign - callback', () async {

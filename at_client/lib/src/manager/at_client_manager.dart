@@ -19,9 +19,9 @@ import 'package:at_client/src/service/sync_service_impl.dart';
 class AtClientManager {
   var _atSign;
   AtClient? _previousAtClient;
-  late AtClient _currentAtClient;
+  AtClient? _currentAtClient;
 
-  AtClient get atClient => _currentAtClient;
+  AtClient? get atClient => _currentAtClient;
   late SyncService syncService;
   late NotificationService notificationService;
   final _changeListeners = <AtSignChangeListener>[];
@@ -43,13 +43,16 @@ class AtClientManager {
     _atSign = atSign;
     _currentAtClient =
         await AtClientImpl.create(_atSign, namespace, preference);
-    final switchAtSignEvent =
-        SwitchAtSignEvent(_previousAtClient, _currentAtClient);
-    notificationService =
-        await NotificationServiceImpl.create(_currentAtClient);
-    syncService = await SyncServiceImpl.create(_currentAtClient);
-    _previousAtClient = _currentAtClient;
-    _notifyListeners(switchAtSignEvent);
+
+    if(_currentAtClient != null) {
+      final switchAtSignEvent =
+      SwitchAtSignEvent(_previousAtClient, _currentAtClient!);
+      notificationService =
+      await NotificationServiceImpl.create(_currentAtClient!);
+      syncService = await SyncServiceImpl.create(_currentAtClient!);
+      _previousAtClient = _currentAtClient;
+      _notifyListeners(switchAtSignEvent);
+    }
     return this;
   }
 

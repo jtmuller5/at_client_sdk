@@ -8,5 +8,5 @@ Future<void> main(List<String> arguments) async {
   // buzz is the namespace
   final atClientManager = await AtClientManager.getInstance()
       .setCurrentAtSign('@alice', 'buzz', preference);
-  print(await atClientManager.atClient.getKeys());
+  print(await atClientManager.atClient?.getKeys());
 }
